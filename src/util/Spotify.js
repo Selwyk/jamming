@@ -18,6 +18,10 @@ const Spotify = {
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     }
+    if (!clientId) {
+      console.error('REACT_APP_SPOTIFY_CLIENT_ID is not set. Check your .env.local file.');
+      return null;
+    }
     window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${encodeURIComponent(redirectURI)}`;
     return null;
   },
